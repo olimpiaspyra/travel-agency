@@ -32,9 +32,12 @@ export default function reducer(statePart = [], action = {}) {
       };
     // TODO - handle other action types
     case CHANGE_DURATION:
+      console.log (statePart, action.payload.type, action.payload.value);
       return {
         ...statePart,
-        duration: action.payload,
+        duration: {
+          ...statePart,
+          [action.payload.type]: (action.payload.value)},
       };
     case REMOVE_TAGS:
       return {
@@ -42,6 +45,7 @@ export default function reducer(statePart = [], action = {}) {
         tags: statePart.tags.filter(tag => tag !== action.payload),
       };
     case ADD_TAGS:
+      console.log (statePart, action.payload);
       return {
         ...statePart,
         // tags: [...statePart, action.payload],
