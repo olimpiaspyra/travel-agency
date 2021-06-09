@@ -12,7 +12,7 @@ class OrderForm extends React.Component {
     return (
       <Grid>
         <Row>
-          {pricing.map(({option}) => (
+          {pricing.map((option) => (
             <Col key={option.id} md={4}>
               <OrderOption {...OrderOption}/>
             </Col>
