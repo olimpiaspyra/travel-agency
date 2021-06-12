@@ -8,13 +8,13 @@ import OrderOption from '../OrderOption/OrderOption.js';
 
 class OrderForm extends React.Component {
   render () {
-    const {tripCost, options} = this.props;
+    const {tripCost, options, setOrderOption} = this.props;
     return (
       <Grid>
         <Row>
           {pricing.map((option) => (
             <Col key={option.id} md={4}>
-              <OrderOption {...OrderOption}/>
+              <OrderOption currentValue={options[option.id]} setOrderOption={setOrderOption} />
             </Col>
           ))}
           <Col xs={12}>
@@ -30,6 +30,7 @@ class OrderForm extends React.Component {
 OrderForm.propTypes = {
   tripCost: PropTypes.string,
   options: PropTypes.object,
+  setOrderOption: PropTypes.func,
 };
 
 export default OrderForm;
