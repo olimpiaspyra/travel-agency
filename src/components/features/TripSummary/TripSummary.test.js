@@ -23,7 +23,7 @@ describe('Component TripSummary', () => {
       id ='abc'
       image = {expectedSrc}
       name = {expectedAlt}
-      cost ='100'
+      cost = '100'
       days = {1}
       tags = {[]}
     />);
@@ -51,7 +51,7 @@ describe('Component TripSummary', () => {
     expect(() => shallow(<TripSummary />)).toThrow();
   });
   it('should tags render in right order in array', () => {
-    const expectedTags = ['one, two, three'];
+    const expectedTags = ['one', 'two', 'three'];
 
     const component = shallow(<TripSummary
       id = 'abc'

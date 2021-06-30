@@ -18,7 +18,7 @@ const optionTypes = {
 };
 
 const OrderOption = ({id, setOrderOption, name, type, ...otherProps}) => {
-  console.log({...otherProps});
+  // console.log({...otherProps});
   const OptionComponent = optionTypes[type];
   if(!OptionComponent){
     return null;
@@ -36,6 +36,7 @@ const OrderOption = ({id, setOrderOption, name, type, ...otherProps}) => {
 
 OrderOption.propTypes = {
   setOrderOption: PropTypes.func,
+  name: PropTypes.string,
 };
 
 export default OrderOption;
