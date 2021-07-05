@@ -121,7 +121,8 @@ describe('Component OrderOption', () => {
 
         case 'icons': {
           it('div contains icon', () => {
-            const div = renderedSubcomponent.find('div');
+            console.log(renderedSubcomponent.debug());
+            const div = renderedSubcomponent.find('div').at(1);
             expect(div.length).toBe(1);
 
             const emptyIcon = div.find('Icon[name="times-circle"]').length;
