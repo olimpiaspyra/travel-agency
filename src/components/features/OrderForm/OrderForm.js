@@ -10,7 +10,7 @@ import settings from '../../../data/settings';
 import {formatPrice} from '../../../utils/formatPrice';
 import {calculateTotal} from '../../../utils/calculateTotal';
 
-const sendOrder = (options, tripCost, tripId, tripName) => {
+const sendOrder = (options, tripCost, tripId, tripName, tripCountry) => {
   console.log({options});
   const totalCost = formatPrice(calculateTotal(tripCost, options));
 
@@ -19,7 +19,12 @@ const sendOrder = (options, tripCost, tripId, tripName) => {
     totalCost,
     tripId,
     tripName,
+    tripCountry,
   };
+
+  if(options.name === '' || options.contact === ''){
+    alert('Please complete name and contact');
+  }
 
   const url = settings.db.url + '/' + settings.db.endpoint.orders;
 
@@ -40,7 +45,7 @@ const sendOrder = (options, tripCost, tripId, tripName) => {
     });
 };
 
-const OrderForm = ({tripCost, options, setOrderOption, tripId, tripName}) => (
+const OrderForm = ({tripCost, options, setOrderOption, tripId, tripName, tripCountry}) => (
   <Grid>
     <Row>
       <Col xs={12}>
@@ -54,7 +59,7 @@ const OrderForm = ({tripCost, options, setOrderOption, tripId, tripName}) => (
       <Col xs={12}>
 
         <OrderSummary tripCost={tripCost} options={options}/>
-        <Button onClick={() => sendOrder(options, tripCost, tripId, tripName)}>Order now!</Button>
+        <Button onClick={() => sendOrder(options, tripCost, tripId, tripName, tripCountry)}>Order now!</Button>
       </Col>
     </Row>
   </Grid>
@@ -67,6 +72,7 @@ OrderForm.propTypes = {
   setOrderOption: PropTypes.func,
   tripId: PropTypes.string,
   tripName: PropTypes.string,
+  tripCountry: PropTypes.string,
 };
 
 export default OrderForm;
