@@ -121,23 +121,23 @@ describe('Component OrderOption', () => {
 
         case 'icons': {
           it('div contains icon', () => {
-            console.log(renderedSubcomponent.debug());
-            const div = renderedSubcomponent.find('div').at(1);
-            expect(div.length).toBe(1);
+            // console.log(renderedSubcomponent.debug());
+            const div = renderedSubcomponent.find('div');
+            expect(div.length).toBe(4);
 
-            const emptyIcon = div.find('Icon[name="times-circle"]').length;
-            expect(emptyIcon.length).toBe(1);
+            const emptyIcon = div.find('Icon').find('Icon[name="times-circle"]').length;
+            expect(emptyIcon).toBe(1);
 
             const options = div.find('Icon').not('[name="times-circle"]');
             expect(options.length).toBe(mockProps.values.length);
-            expect(options.at(0).prop('name')).toBe(mockProps.values[0].id);
-            expect(options.at(1).prop('name')).toBe(mockProps.values[1].id);
+            expect(options.at(0).prop('name')).toBe(mockProps.values[0].icon);
+            expect(options.at(1).prop('name')).toBe(mockProps.values[1].icon);
           });
 
           it('should render run setOrderOption function on click', () => {
             renderedSubcomponent.find('div .icon').last().simulate('click');
             expect(mockSetOrderOption).toBeCalledTimes(1);
-            expect(mockSetOrderOption.toBeCalledWith({[mockProps.id]: testValue}));
+            expect(mockSetOrderOption).toBeCalledWith({[mockProps.id]: testValue});
           });
           break;
         }
@@ -185,12 +185,13 @@ describe('Component OrderOption', () => {
 
         case 'text': {
           it('div contains input', () => {
-            const div = renderedSubcomponent.find('input');
+            console.log(renderedSubcomponent.debug());
+            const div = renderedSubcomponent.find('div');
             expect(div.length).toBe(1);
 
-            const input = div.find('input');
-            expect(div.length).toBe(1);
-            expect(input.length).toBe(1);
+            const inputs = div.find('input');
+            expect(inputs.length).toBe(1);
+            expect(inputs.at(0).prop('type')).toBe('text');
           });
 
           it('should run setOrderOption function on change', () => {
