@@ -4,16 +4,20 @@ import styles from './DaysToSummer.scss';
 class DaysToSummer extends React.Component {
   getCountdownDate() {
     const currentDate = new Date();
-    let startSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 5, 5));
-    let endSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 6, 28));
+    let startSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 5, 21));
+    let endSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 8, 23));
 
     let daysToSummer = Math.round((startSummer.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
 
-    if (currentDate < startSummer){
+    if (daysToSummer > 0) {
 
       if (daysToSummer === 1) {
         return `${daysToSummer} day to summer!`;
       } else return `${daysToSummer} days to summer!`;
+    }
+
+    else if (daysToSummer <= 0 && currentDate < endSummer) {
+      return `Summertime!`;
     }
 
     else if (currentDate > endSummer) {

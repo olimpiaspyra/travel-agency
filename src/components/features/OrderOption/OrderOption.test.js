@@ -185,7 +185,7 @@ describe('Component OrderOption', () => {
 
         case 'text': {
           it('div contains input', () => {
-            console.log(renderedSubcomponent.debug());
+            // console.log(renderedSubcomponent.debug());
             const div = renderedSubcomponent.find('div');
             expect(div.length).toBe(1);
 
