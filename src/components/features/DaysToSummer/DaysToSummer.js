@@ -5,9 +5,11 @@ class DaysToSummer extends React.Component {
   getCountdownDate() {
     let currentDate = new Date();
     let startSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 5, 21));
-    startSummer.setFullYear(startSummer.getFullYear() + 1);
     let endSummer = new Date(Date.UTC(currentDate.getUTCFullYear(), 8, 23));
     let daysToSummer = Math.round((startSummer.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
+    let daysOfSummer = Math.round((endSummer.getTime() - startSummer.getTime()) / (1000 * 60 * 60 * 24));
+    console.log (daysOfSummer);
+    console.log (daysToSummer);
 
     if (daysToSummer > 0) {
 
@@ -16,10 +18,11 @@ class DaysToSummer extends React.Component {
       } else return `${daysToSummer} days to summer!`;
     }
 
-    else if (daysToSummer <= 0 && currentDate < endSummer) {
+    else if (daysOfSummer >= 0 && daysToSummer < daysOfSummer) {
       return `Summertime!`;
     }
     else if (currentDate > endSummer) {
+      startSummer.setFullYear(startSummer.getFullYear() + 1);
       daysToSummer = Math.round((currentDate.getTime() + startSummer.getTime()) / (1000 * 60 * 60 * 24));
 
       return `${daysToSummer} days to summer!`;
